@@ -29,25 +29,25 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
-            $("#coins").DataTable({
+        $(document).ready(function () {
+            var table = $("#coins").DataTable({
                 ajax: {
-                    url: "/api/apiCoins",
+                    url: "/api/apicoins",
                     dataSrc: ""
                 },
                 columns: [
                     {
+                        data: "Coin_ID",
+                        render: function (data, type, movie) {
+                            return "<a href='/movies/edit/" + movie.id + "'>" + movie.name + "</a>";
+                        }
+                    },
+                    {
                         data: "Coin_Name"
-                        //render: function(data, type, coins) {
-                        //    return "<a href='/movies/edit/" + coins.Coin_ID + "'>" + coins.Coin_ID + "</a>";
-                        //}
                     },
                     {
-                        data: "tblCoinType.Type_Description"
-                    },
-                    {
-                        data: "id",
-                        render: function(data) {
+                        data: "name",
+                        render: function (data) {
                             return "<button class='btn-link js-delete' data-movie-id=" + data + "> Delete</button>";
                         }
                     }
