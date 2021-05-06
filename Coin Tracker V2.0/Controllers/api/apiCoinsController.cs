@@ -17,9 +17,9 @@ namespace Coin_Tracker_V2._0.Controllers.api
         private SilverTrackerEntities db = new SilverTrackerEntities();
 
         // GET: api/apiCoins
-        public IQueryable<tblCoin> GettblCoins()
+        public IHttpActionResult GettblCoins()
         {
-            return db.tblCoins;
+            return Ok(db.tblCoins.ToList());
         }
 
         // GET: api/apiCoins/5
