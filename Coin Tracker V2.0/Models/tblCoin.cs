@@ -17,9 +17,7 @@ namespace Coin_Tracker_V2._0.Models
     public partial class tblCoin
     {
         public int Coin_ID { get; set; }
-        [JsonIgnore]
         public int Type_ID { get; set; }
-        [JsonIgnore]
         public int Composition_ID { get; set; }
         public string Coin_Name { get; set; }
         public string Coin_Description { get; set; }
