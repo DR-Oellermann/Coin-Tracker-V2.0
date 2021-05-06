@@ -17,8 +17,7 @@ namespace Coin_Tracker_V2._0.Controllers
         // GET: Coins
         public ActionResult Index()
         {
-            var tblCoins = db.tblCoins.Include(t => t.tblCoinComposition).Include(t => t.tblCoinType);
-            return View(tblCoins.ToList());
+            return View();
         }
 
         // GET: Coins/Details/5

@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Coin_Tracker_V2._0.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace Coin_Tracker_V2._0.Controllers.api
 {
@@ -19,7 +20,8 @@ namespace Coin_Tracker_V2._0.Controllers.api
         // GET: api/apiCoins
         public IHttpActionResult GettblCoins()
         {
-            return Ok(db.tblCoins.ToList());
+            var result = db.tblCoins.ToList();
+            return Ok(result);
         }
 
         // GET: api/apiCoins/5
