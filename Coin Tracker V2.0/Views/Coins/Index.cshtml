@@ -64,8 +64,8 @@
                         data: "Image_Path"
                     }, {
                         data: "Coin_ID",
-                        render: function (data) {
-                            return "<button type='button' class='btn btn-info js-delete' data-movie-id=" + data + "> Edit</button>";
+                        render: function (data, type, coin) {
+                            return '<a class="btn btn-info" href="/Coins/Edit/' + coin.Coin_ID + '">Edit</a>';
                         }
                     }, {
                         data:"Coin_ID",
