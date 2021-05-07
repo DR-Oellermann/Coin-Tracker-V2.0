@@ -44,10 +44,10 @@
                 },
                 columns: [
                     {
-                        data: "Coin_Name"
-                        //render: function (data, type, coin) {
-                        //    return "<a href='/coins/edit/" + coin.id + "'>" + coin.name + "</a>";
-                        //}
+                        data: "Coin_Name",
+                        render: function (data, type, coin) {
+                            return "<a href='/coins/details/" + coin.Coin_ID + "'>" + coin.Coin_Name + "</a>";
+                        }
                     }, {
                         data: "Coin_Description"
                     }, {
