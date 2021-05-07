@@ -15,7 +15,14 @@
     <thead>
     <tr>
         <th>Coin Name</th>
-        <th>Genre</th>
+        <th>Description</th>
+        <th>Coin weight</th>
+        <th>Coin Composition</th>
+        <th>Coin Type</th>
+        <th>Purchase Date</th>
+        <th>Purchase Amount</th>
+        <th>View Image</th>
+        <th>Edit</th>
         <th>Delete</th>
     </tr>
     </thead>
@@ -37,20 +44,36 @@
                 },
                 columns: [
                     {
-                        data: "Coin_ID",
-                        render: function (data, type, movie) {
-                            return "<a href='/movies/edit/" + movie.id + "'>" + movie.name + "</a>";
-                        }
-                    },
-                    {
                         data: "Coin_Name"
-                    },
-                    {
-                        data: "name",
+                        //render: function (data, type, coin) {
+                        //    return "<a href='/coins/edit/" + coin.id + "'>" + coin.name + "</a>";
+                        //}
+                    }, {
+                        data: "Coin_Description"
+                    }, {
+                        data: "Coin_Weight"
+                    }, {
+                        data: "tblCoinComposition.Composition_Description"
+                    }, {
+                        data: "tblCoinType.Type_Description"
+                    }, {
+                        data: "Purchase_Date"
+                    }, {
+                        data: "Purchase_Amount"
+                    }, {
+                        data: "Image_Path"
+                    }, {
+                        data: "Coin_ID",
                         render: function (data) {
-                            return "<button class='btn-link js-delete' data-movie-id=" + data + "> Delete</button>";
+                            return "<button type='button' class='btn btn-info js-delete' data-movie-id=" + data + "> Edit</button>";
+                        }
+                    }, {
+                        data:"Coin_ID",
+                        render: function (data) {
+                            return '<button type="button" class="btn btn-danger" coin-data-id=' + data + '>Delete</button>';
                         }
                     }
+
                 ]
             });
         });

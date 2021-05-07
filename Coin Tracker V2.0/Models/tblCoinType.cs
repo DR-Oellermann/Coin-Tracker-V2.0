@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
+
 namespace Coin_Tracker_V2._0.Models
 {
     using System;
@@ -24,6 +26,7 @@ namespace Coin_Tracker_V2._0.Models
         public string Type_Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<tblCoin> tblCoins { get; set; }
     }
 }
