@@ -48,8 +48,25 @@ namespace Coin_Tracker_V2._0.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Coin_ID,Type_ID,Composition_ID,Coin_Name,Coin_Description,Purchase_Date,Purchase_Amount,Face_Value,Image_Path,Coin_Weight")] tblCoin tblCoin)
+        public ActionResult Create([Bind(Include = "Coin_ID,Type_ID,Composition_ID,Coin_Name,Coin_Description,Purchase_Date,Purchase_Amount,Face_Value,Image_Path,Coin_Weight")] tblCoin tblCoin, HttpPostedFileBase image)
         {
+            if (image != null)
+            {
+                try
+                {
+                    string imgName = Convert.ToString(tblCoin.Coin_ID) + "_" + Convert.ToString(tblCoin.Coin_Name) +
+                                     "_" + System.IO.Path.GetFileName(image.FileName);
+                    image.SaveAs(Server.MapPath("~/images/" + imgName));
+                    tblCoin.Image_Path = imgName;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+            }
+
+
             if (ModelState.IsValid)
             {
                 db.tblCoins.Add(tblCoin);
