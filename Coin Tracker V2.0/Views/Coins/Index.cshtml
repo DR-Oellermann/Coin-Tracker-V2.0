@@ -122,6 +122,10 @@
                                 method: "DELETE",
                                 success: function() {
                                     table.row(recordID.parents("tr")).remove().draw();
+                                    toastr["info"]("Record Deleted successfully!")
+                                },
+                                error: function(jqXHR) {
+                                    toastr["error"]("There was an error processing your request! Error code: " + jqXHR.status);
                                 }
                             });
                         }
