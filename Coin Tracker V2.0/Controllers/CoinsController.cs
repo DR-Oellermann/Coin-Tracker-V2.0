@@ -61,6 +61,13 @@ namespace Coin_Tracker_V2._0.Controllers
                     image.SaveAs(Server.MapPath("~/images/" + imgName));
                     //set db image path name
                     tblCoin.Image_Path = imgName;
+
+                    if (ModelState.IsValid)
+                    {
+                        db.tblCoins.Add(tblCoin);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
                 }
                 catch (Exception e)
                 {
@@ -69,13 +76,6 @@ namespace Coin_Tracker_V2._0.Controllers
                 }
             }
 
-
-            if (ModelState.IsValid)
-            {
-                db.tblCoins.Add(tblCoin);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
             ViewBag.Composition_ID = new SelectList(db.tblCoinCompositions, "Composition_ID", "Composition_Description", tblCoin.Composition_ID);
             ViewBag.Type_ID = new SelectList(db.tblCoinTypes, "Type_ID", "Type_Description", tblCoin.Type_ID);
