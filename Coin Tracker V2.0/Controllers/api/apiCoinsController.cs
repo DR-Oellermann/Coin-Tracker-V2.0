@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Coin_Tracker_V2._0.Models;
 using Microsoft.Ajax.Utilities;
+using System.IO;
 
 namespace Coin_Tracker_V2._0.Controllers.api
 {
@@ -92,9 +94,22 @@ namespace Coin_Tracker_V2._0.Controllers.api
         public IHttpActionResult DeletetblCoin(int id)
         {
             tblCoin tblCoin = db.tblCoins.Find(id);
+
             if (tblCoin == null)
             {
                 return NotFound();
+            }
+
+            try
+            {
+                string imageName = tblCoin.Image_Path;
+                string filepath = "~//images/" + imageName;
+                File.Delete(filepath);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                Debug.WriteLine(e);
             }
 
             db.tblCoins.Remove(tblCoin);
