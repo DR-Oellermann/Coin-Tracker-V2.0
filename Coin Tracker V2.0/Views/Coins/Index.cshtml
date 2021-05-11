@@ -92,7 +92,7 @@
                     }, {
                         data:"Coin_ID",
                         render: function (data) {
-                            return '<button type="button" class="btn btn-danger" coin-data-id=' + data + '>Delete</button>';
+                            return '<button id="btn-delete" type="button" class="btn btn-danger" coin-data-id=' + data + '>Delete</button>';
                         }
                     }
 
@@ -109,6 +109,12 @@
             function() {
                 var imgName = $(this).attr("coin-img-id");
                 $(".modal-body").append('<img src="/images/' + imgName + '" alt="No Image" width="250" height="250">');
+            });
+
+        $("#coins").on("click",
+            "#btn-delete",
+            function () {
+                bootbox.alert("Hello world!");
             });
     </script>
 }
