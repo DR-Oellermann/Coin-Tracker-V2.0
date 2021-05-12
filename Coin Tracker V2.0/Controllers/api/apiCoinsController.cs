@@ -95,22 +95,27 @@ namespace Coin_Tracker_V2._0.Controllers.api
         {
             tblCoin tblCoin = db.tblCoins.Find(id);
 
+            CoinsController coinsController = new CoinsController();
+
+            coinsController.DeletePicture(id);
+
+
             if (tblCoin == null)
             {
                 return NotFound();
             }
-
-            try
-            {
-                string imageName = tblCoin.Image_Path;
-                string filepath = "~//images/" + imageName;
-                File.Delete(filepath);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(e.Message);
-                Debug.WriteLine(e);
-            }
+            //not working maybe make method and call method
+            //try
+            //{
+            //    string imageName = tblCoin.Image_Path;
+            //    string filepath = "~//images/" + imageName;
+            //    File.Delete(filepath);
+            //}
+            //catch (Exception e)
+            //{
+            //    Debug.WriteLine(e.Message);
+            //    Debug.WriteLine(e);
+            //}
 
             db.tblCoins.Remove(tblCoin);
             db.SaveChanges();
@@ -131,5 +136,7 @@ namespace Coin_Tracker_V2._0.Controllers.api
         {
             return db.tblCoins.Count(e => e.Coin_ID == id) > 0;
         }
+
+
     }
 }

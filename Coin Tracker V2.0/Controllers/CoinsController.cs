@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -150,6 +151,24 @@ namespace Coin_Tracker_V2._0.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        public void DeletePicture(int id)
+        {
+            tblCoin tblCoin = db.tblCoins.Find(id);
+            string imgName = tblCoin.Image_Path;
+
+
+            try
+            {
+                var filePath = Server.MapPath("~/images/" + imgName);
+                System.IO.File.Delete(filePath);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("--------------------------------------");
+                Debug.WriteLine(e);
+                Debug.WriteLine(e.Message);
+            }
         }
     }
 }
