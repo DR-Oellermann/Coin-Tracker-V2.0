@@ -95,9 +95,9 @@ namespace Coin_Tracker_V2._0.Controllers.api
         {
             tblCoin tblCoin = db.tblCoins.Find(id);
 
-            CoinsController coinsController = new CoinsController();
+            //CoinsController coinsController = new CoinsController();
 
-            coinsController.DeletePicture(id);
+            //coinsController.DeletePicture(id);
 
 
             if (tblCoin == null)

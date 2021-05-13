@@ -55,8 +55,10 @@ namespace Coin_Tracker_V2._0.Controllers
             {
                 try
                 {
+                    //replaces any whitespace in the name with underscore
+                    string coinName = tblCoin.Coin_Name.Replace(" ", "_");
                     //set the image name
-                    string imgName = Convert.ToString(tblCoin.Coin_ID) + "_" + Convert.ToString(tblCoin.Coin_Name) +
+                    string imgName = Convert.ToString(tblCoin.Coin_ID) + "_" + coinName +
                                      "_" + System.IO.Path.GetFileName(image.FileName);
                     //save the image to the images folder
                     image.SaveAs(Server.MapPath("~/images/" + imgName));
@@ -152,23 +154,25 @@ namespace Coin_Tracker_V2._0.Controllers
             }
             base.Dispose(disposing);
         }
-        public void DeletePicture(int id)
-        {
-            tblCoin tblCoin = db.tblCoins.Find(id);
-            string imgName = tblCoin.Image_Path;
+
+        //not working currently
+        //public void DeletePicture(int id)
+        //{
+        //    tblCoin tblCoin = db.tblCoins.Find(id);
+        //    string imgName = tblCoin.Image_Path;
 
 
-            try
-            {
-                var filePath = Server.MapPath("~/images/" + imgName);
-                System.IO.File.Delete(filePath);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine("--------------------------------------");
-                Debug.WriteLine(e);
-                Debug.WriteLine(e.Message);
-            }
-        }
+        //    try
+        //    {
+        //        var filePath = Server.MapPath("~/images/" + imgName);
+        //        System.IO.File.Delete(filePath);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Debug.WriteLine("--------------------------------------");
+        //        Debug.WriteLine(e);
+        //        Debug.WriteLine(e.Message);
+        //    }
+        //}
     }
 }
