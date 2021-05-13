@@ -139,6 +139,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\api\apiCoinsController.cs" />
+    <Compile Include="Controllers\api\apiGraphController.cs" />
     <Compile Include="Controllers\CoinsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
