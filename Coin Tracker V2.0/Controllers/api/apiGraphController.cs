@@ -18,5 +18,22 @@ namespace Coin_Tracker_V2._0.Controllers.api
 
             return Ok(coinType);
         }
+
+        public IHttpActionResult GetCollectionData()
+        {
+            double totalValue = 0;
+            double totalWeight = 0;
+            foreach (var item in db.tblCoins)
+            {
+                totalValue += item.Purchase_Amount;
+                totalWeight += item.Coin_Weight;
+            }
+
+            int totalCoins = db.tblCoins.Count();
+
+            var result = new {TotalCoins = totalCoins, TotalValue = totalValue, TotalWeight = totalWeight};
+
+            return Ok(result);
+        }
     }
 }
