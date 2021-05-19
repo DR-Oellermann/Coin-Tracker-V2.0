@@ -7,10 +7,15 @@
 <h2>Index</h2>
 
 <!--Canvas for type graph-->
-<div class="row">
-    <div class="col-sm">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
             <canvas id="coinTypeChart"></canvas>
         </div>
+        <div class="col-sm-4" id="collectionData">
+
+        </div>
+    </div>
 </div>
 
 <p>
@@ -67,7 +72,7 @@
         $(document).ready(function() {
             var table = $("#coins").DataTable({
                 ajax: {
-                    url: "/api/apicoins",
+                    url: "/api/apicoins/GettblCoins",
                     dataSrc: ""
                 },
                 columns: [
@@ -127,7 +132,7 @@
                         function(result) {
                             if (result) {
                                 $.ajax({
-                                        url: "/api/apicoins/" + recordID.attr("coin-data-id"),
+                                        url: "/api/apicoins/DeletetblCoins/" + recordID.attr("coin-data-id"),
                                         method: "DELETE",
                                         success: function() {
                                             table.row(recordID.parents("tr")).remove().draw();
@@ -149,7 +154,7 @@
         // to generate CoinType Graph
 
         $.ajax({
-            url: "/api/apiGraph",
+            url: "/api/apiGraph/GetcoinType",
             success: (data, status) => {
                 //console.log(status);
 
@@ -208,8 +213,22 @@
             }
         });
 
+            //adds the collection info next to graph
+            $.ajax({
+                url: "/api/apiGraph/GetCollectionData",
+                success: (data) => {
+                    $("#collectionData").append(
+                        "<p>Total Coins: " + data.TotalCoins + "</p>" +
+                        "<p>Total Purchase Price: R" + data.TotalValue + "</p>" +
+                        "<p> Total Weight: " + data.TotalWeight + "g</p>");
+                },
+                error: (status) => {
+                    toastr["error"]("An error happened when loading collection data");
+                }
+            });
 
-    });
+
+        });
 
     </script>
 }
